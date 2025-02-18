@@ -1,0 +1,122 @@
+.modal__success-window p {
+    margin-bottom: 15px;
+}
+.modal__title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.modal__label {
+    display: block;
+    margin-left: 24px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #9DA5AF; 
+}
+.modal__input {
+    width: 100%;
+    padding: 14px 14px 14px 28px;
+    border-radius: 28px;
+    border: none;
+    font-size: 16px;
+    background: #fff;
+    color: #000;
+}
+.modal__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 20px;
+    width: 100%;
+}
+.modal__footer-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+.modal__signup {
+    color: #9DA5AF;
+    margin-bottom: 12px;
+}
+.modal__signup-link {
+    color: #a6ce39;
+    text-decoration: none;
+    font-weight: bold;
+}
+.modal__button {
+    display: inline-block;
+    background-color: #a6ce39;
+    padding: 17px 24px;
+    border: none;
+    border-radius: 34px;
+    font-size: 19px;
+    cursor: pointer;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #fff;
+    width: 100%;
+    max-width: fit-content;
+    min-width: 114px;
+    transition: background-color 0.35s;
+    text-align: center;
+}
+.modal__button:hover {
+    background: #91b831;
+}
+.modal__errors {
+    align-self: flex-start;
+}
+.modal__errors ul {
+    margin-top: 8px;
+    padding: 8px 14px 8px 14px;
+    font-size: 14px;
+    color: #FF7461;
+    background-color: rgba(255, 116, 97, 10%);
+    border-radius: 24px;
+}
+.modal__errors ul li {
+    list-style-type: none;
+}
+
+@media (min-width: 768px) {
+    .modal__footer,
+    .modal__footer-row {
+        display: flex;
+    }
+
+    .modal__footer-row {
+        width: 100%;
+        flex-direction: row;
+        align-self: center;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 1200px) {
+    .modal__title {
+        font-size: 52px;
+    }
+
+    .modal__input {
+        min-width: 380px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .modal__input {
+        min-width: 620px;
+        padding: 27px 14px 27px 28px;
+        border-radius: 36px;
+    }
+}
