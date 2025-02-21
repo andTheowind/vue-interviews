@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, defineEmits } from 'vue';
-import { useRouter } from 'vue-router'; 
+import { useRouter } from 'vue-router';
 import Cookies from 'js-cookie';
 import { BACKEND_URL } from '@/assets/utils/constants/environments';
 import ModalWrapper from './ModalWrapper.vue';
@@ -56,8 +56,8 @@ onMounted(() => {
     <ModalWrapper :isOpen="isOpen" @close="closeModal">
         <template v-if="loginSuccess">
             <div class="modal__success-window">
-                <p>{{ loginSuccess }}</p>
-                <button class="modal__button" @click="closeModal">ОК</button>
+                <p class="modal__success-text">{{ loginSuccess }}</p>
+                <button class="modal__button" @click="closeModal">Ок</button>
             </div>
         </template>
         <template v-else>
@@ -65,22 +65,17 @@ onMounted(() => {
             <form @submit.prevent="submitLogin" class="modal__form">
                 <div class="modal__form-group">
                     <label for="email" class="modal__label">Email</label>
-                    <input 
-                        id="email" type="email" 
-                        v-model="email" 
-                        class="modal__input" 
-                        placeholder="Введите Email" required 
-                    />
+                    <input id="email" type="email" v-model="email" class="modal__input" placeholder="Введите Email"
+                        required />
                 </div>
                 <div class="modal__form-group">
                     <label for="password" class="modal__label">Пароль</label>
-                    <div class="modal__password-wrapper">
-                        <input 
-                            id="password" :type="showPassword ? 'text' : 'password'" 
-                            v-model="password" 
-                            class="modal__input" 
-                            placeholder="Введите пароль" required 
-                        />
+                    <div class="modal__input-wrapper">
+                        <input id="password" :type="showPassword ? 'text' : 'password'" v-model="password"
+                            class="modal__input" placeholder="Введите пароль" required />
+                        <span @click="showPassword = !showPassword" class="modal__button-visibillity">
+                            <img src="@/assets/img/visibillity-icon.svg" alt="">
+                        </span>
                     </div>
                 </div>
                 <div class="modal__footer">

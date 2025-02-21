@@ -9,6 +9,7 @@ const email = ref('');
 const password = ref('');
 const confirmPassword = ref('');
 const showPassword = ref(false);
+const showConfirmPassword = ref(false);
 const registerSuccess = ref('');
 const errorList = ref<string[]>([]);
 
@@ -53,41 +54,37 @@ onMounted(() => {
     <ModalWrapper :isOpen="isOpen" @close="closeModal">
         <template v-if="registerSuccess">
             <div class="modal__success-window">
-                <p>{{ registerSuccess }}</p>
-                <button class="modal__button" @click="closeModal">ОК</button>
+                <p class="modal__success-text">{{ registerSuccess }}</p>
+                <button class="modal__button" @click="closeModal">Ок</button>
             </div>
         </template>
-
         <template v-else>
             <h2 class="modal__title">Регистрация</h2>
             <form @submit.prevent="submitRegister" class="modal__form">
                 <div class="modal__form-group">
                     <label for="email" class="modal__label">Email</label>
-                    <input 
-                        id="email" 
-                        type="email" v-model="email" 
-                        class="modal__input" 
-                        placeholder="Введите Email" required 
-                    />
+                    <input id="email" type="email" v-model="email" class="modal__input" placeholder="Введите Email"
+                        required />
                 </div>
                 <div class="modal__form-group">
                     <label for="password" class="modal__label">Пароль</label>
-                    <input 
-                        id="password" 
-                        :type="showPassword ? 'text' : 'password'" 
-                        v-model="password" 
-                        class="modal__input" 
-                        placeholder="Введите пароль" required
-                    />
+                    <div class="modal__input-wrapper">
+                        <input id="password" :type="showPassword ? 'text' : 'password'" v-model="password"
+                            class="modal__input" placeholder="Введите пароль" required />
+                        <span @click="showPassword = !showPassword" class="modal__button-visibillity">
+                            <img src="@/assets/img/visibillity-icon.svg" alt="">
+                        </span>
+                    </div>
                 </div>
                 <div class="modal__form-group">
                     <label for="confirm-password" class="modal__label">Подтвердите пароль</label>
-                    <input 
-                        id="confirm-password" :type="showPassword ? 'text' : 'password'" 
-                        v-model="confirmPassword" 
-                        class="modal__input" 
-                        placeholder="Подтвердите пароль" required
-                    />
+                    <div class="modal__input-wrapper">
+                        <input id="confirm-password" :type="showConfirmPassword ? 'text' : 'password'"
+                            v-model="confirmPassword" class="modal__input" placeholder="Подтвердите пароль" required />
+                        <span @click="showConfirmPassword = !showConfirmPassword" class="modal__button-visibillity">
+                            <img src="@/assets/img/visibillity-icon.svg" alt="">
+                        </span>
+                    </div>
                 </div>
                 <div class="modal__footer">
                     <div class="modal__footer-row">
