@@ -2,7 +2,7 @@
     align-self: flex-start;
 }
 
-.modal__errors ul {
+.modal__errors .modal__errors-list {
     margin-top: 8px;
     padding: 8px 14px 8px 14px;
     font-size: 14px;
@@ -11,6 +11,6 @@
     border-radius: 24px;
 }
 
-.modal__errors ul li {
+.modal__errors .modal__errors-list li {
     list-style-type: none;
 }

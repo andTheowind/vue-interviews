@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
     <div v-if="errorList.length" class="modal__errors">
-        <ul>
+        <ul class="modal__errors-list">
             <li v-for="(error, index) in errorList" :key="index">{{ error }}</li>
         </ul>
     </div>

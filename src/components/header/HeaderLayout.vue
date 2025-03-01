@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import Cookies from 'js-cookie';
+import HeaderLogo from '@/components/header/components/HeaderLogo.vue';
+import HeaderLogin from '@/components/header/components/HeaderLogin.vue';
+import HeaderLogout from '@/components/header/components/HeaderLogout.vue';
 import LoginModal from '@/components/modals/LoginModal.vue';
 import RegisterModal from '@/components/modals/RegisterModal.vue';
 
@@ -63,30 +66,20 @@ const logout = () => {
 <template>
     <header class="header">
         <div class="header__container">
-            <div class="header__logo">
-                <a href="/" class="header__logo-link">
-                    <img src="@/assets/img/logo.svg" alt="MyNotes" class="header__logo-icon" />
-                </a>
-            </div>
+            <HeaderLogo />
             <div>
                 <template v-if="userData">
                     <div class="header__user">
                         <span class="header__user-name">
                             {{ userData.email }}
                         </span>
-                        <a href="/logout" class="header__button-profile" @click.prevent="isVisible = !isVisible">
-                            <img src="@/assets/img/user-icon.svg" class="header__user-icon" alt="">
-                            <div class="header__lougout-wrapper" v-if="isVisible">
-                                <a href="/logout" class="header__lougout" @click="logout">Выход</a>
-                            </div>
-                        </a>
+                        <HeaderLogout @logout="logout" />
                     </div>
                 </template>
                 <template v-else>
-                    <button class="header__button" @click="loginModalActions.open">
-                        <img class="header__button-icon" src="@/assets/img/login-icon.svg" alt="">
-                        <span class="header__button-text">Вход</span>
-                    </button>
+                    <div>
+                        <HeaderLogin @openLogin="loginModalActions.open" />
+                    </div>
                 </template>
             </div>
         </div>

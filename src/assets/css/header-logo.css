@@ -1,0 +1,13 @@
+.header__logo {
+    display: flex;
+    align-items: center;
+    color: #a6ce39;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header__logo-icon {
+    max-width: 100%;
+    height: auto;
+    margin-right: 8px;
+}

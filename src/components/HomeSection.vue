@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="home__image-wrapper">
-            <img class="home__image" src="@/assets/img/Hero-img.svg" alt="Заметки в облаке" />
+            <img class="home__image" src="@/assets/img/Hero-img.svg" alt="Заметки" />
         </div>
     </section>
 </template>

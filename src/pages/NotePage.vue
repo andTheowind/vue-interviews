@@ -10,6 +10,7 @@ import {
 } from '@/composable/api'
 import HeaderLayout from '@/components/header/HeaderLayout.vue';
 import CreateNoteModal from '@/components/modals/CreateNoteModal.vue';
+import FloatingButton from '@/components/FloatingButton.vue';
 
 onMounted(() => {
   loadNotes()
@@ -29,7 +30,7 @@ onMounted(() => {
             <div class="note__content">{{ note.content }}</div>
             <div class="note__footer">
               <button class="note__delete" @click="handleDeleteNote(note.id)">
-                <img class="note__delete-icon" src="@/assets/img/remove-note-btn-img.svg" alt="" />
+                <img class="note__delete-icon" src="@/assets/img/remove-note-btn-img.svg" alt="Удалить заметку" />
                 <span class="note__delete-text">Удалить</span>
               </button>
             </div>
@@ -37,9 +38,7 @@ onMounted(() => {
         </li>
       </ul>
     </section>
-    <a class="floating__button" @click="openCreateNoteModal">
-      <img src="@/assets/img/plus-icon.svg" class="floating__button-icon" alt="Добавить заметку" />
-    </a>
+    <FloatingButton @click="openCreateNoteModal" />
     <CreateNoteModal ref="createNoteModal" @create-note="handleCreateNote" />
   </div>
 </template>

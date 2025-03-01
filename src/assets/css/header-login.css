@@ -1,0 +1,32 @@
+.header__button {
+    background-color: #a6ce39;
+    border: none;
+    padding: 11px 24px;
+    border-radius: 32px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.35s;
+    gap: 11px;
+}
+
+.header__button:hover {
+    background-color: #8fbf33;
+}
+
+.header__button-text {
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    display: inline-block;
+}
+
+.header__button-icon {
+    max-width: 100%;
+    height: auto;
+}
