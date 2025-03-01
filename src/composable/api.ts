@@ -27,7 +27,7 @@ export const loadNotes = async () => {
     });
     if (response.ok) {
       const data = await response.json();
-      notes.value = Array.isArray(data) ? data : []; // обновляем заметки
+      notes.value = Array.isArray(data) ? data : [];
     } else {
       console.error('Не удалось загрузить заметки');
     }
@@ -48,7 +48,7 @@ export const openCreateNoteModal = () => {
 
 // обработчик создания заметки
 export const handleCreateNote = (note: { title: string; content: string; id: number }) => {
-  notes.value.push(note); // добавляем новую заметку в массив
+  notes.value.push(note); 
 };
 
 // обработчик удаления заметки
@@ -68,7 +68,6 @@ export const handleDeleteNote = async (noteId: number) => {
     });
 
     if (response.ok) {
-      // удаляем заметку из массива
       notes.value = notes.value.filter((note) => note.id !== noteId);
     } else {
       console.error('Не удалось удалить заметку');

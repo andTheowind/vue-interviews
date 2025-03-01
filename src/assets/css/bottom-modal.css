@@ -1,0 +1,60 @@
+.modal__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 20px;
+    width: 100%;
+}
+
+.modal__footer-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+
+.modal__signup {
+    color: #9DA5AF;
+    margin-bottom: 12px;
+}
+
+.modal__button {
+    display: inline-block;
+    background-color: #a6ce39;
+    padding: 17px 24px;
+    border: none;
+    border-radius: 34px;
+    font-size: 19px;
+    cursor: pointer;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #fff;
+    width: 100%;
+    max-width: fit-content;
+    min-width: 114px;
+    transition: background-color 0.35s;
+    text-align: center;
+}
+
+.modal__button:hover {
+    background: #91b831;
+}
+
+@media (min-width: 768px) {
+
+    .modal__footer,
+    .modal__footer-row {
+        display: flex;
+    }
+
+    .modal__footer-row {
+        width: 100%;
+        flex-direction: row;
+        align-self: center;
+        justify-content: space-between;
+    }
+}

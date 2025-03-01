@@ -1,17 +1,12 @@
 <script setup lang="ts">
-defineProps<{
-    isOpen: boolean;
-}>();
+defineProps<{ isOpen: boolean; }>();
 
 const emit = defineEmits(['close']);
 </script>
 
 <template>
     <div class="modal" v-if="isOpen">
-        <!-- затемнённый фон для закрытия окна при клике -->
         <div class="modal__overlay" @click="emit('close')"></div>
-
-        <!-- контент модального окна -->
         <div class="modal__content">
             <button class="modal__close" @click="emit('close')">
                 <img src="@/assets/img/close-btn.svg" alt="Закрыть">
@@ -21,6 +16,4 @@ const emit = defineEmits(['close']);
     </div>
 </template>
 
-<style scoped>
-@import url('@/assets/css/modal-wrapper.css');
-</style>
+<style scoped src="@/assets/css/modal-wrapper.css"></style>

@@ -2,13 +2,14 @@
 import { ref, onMounted, defineEmits } from 'vue';
 import { BACKEND_URL } from '@/assets/utils/constants/environments';
 import ModalWrapper from './ModalWrapper.vue';
+import BaseField from './fields/BaseField.vue';
+import BottomField from './fields/BottomField.vue';
 
 // состояние модального окна
 const isOpen = ref(false);
 const email = ref('');
 const password = ref('');
 const confirmPassword = ref('');
-const showPassword = ref(false);
 const showConfirmPassword = ref(false);
 const registerSuccess = ref('');
 const errorList = ref<string[]>([]);
@@ -55,27 +56,15 @@ onMounted(() => {
         <template v-if="registerSuccess">
             <div class="modal__success-window">
                 <p class="modal__success-text">{{ registerSuccess }}</p>
-                <button class="modal__button" @click="closeModal">Ок</button>
+                <a class="modal__button" @click="closeModal">Ок</a>
             </div>
         </template>
         <template v-else>
             <h2 class="modal__title">Регистрация</h2>
             <form @submit.prevent="submitRegister" class="modal__form">
-                <div class="modal__form-group">
-                    <label for="email" class="modal__label">Email</label>
-                    <input id="email" type="email" v-model="email" class="modal__input" placeholder="Введите Email"
-                        required />
-                </div>
-                <div class="modal__form-group">
-                    <label for="password" class="modal__label">Пароль</label>
-                    <div class="modal__input-wrapper">
-                        <input id="password" :type="showPassword ? 'text' : 'password'" v-model="password"
-                            class="modal__input" placeholder="Введите пароль" required />
-                        <span @click="showPassword = !showPassword" class="modal__button-visibillity">
-                            <img src="@/assets/img/visibillity-icon.svg" alt="">
-                        </span>
-                    </div>
-                </div>
+                <BaseField label="Email" name="email" type="email" v-model:modelValue="email"
+                    placeholder="Введите email" required />
+                <BaseField label="Пароль" name="password" type="password" v-model:modelValue="password" required />
                 <div class="modal__form-group">
                     <label for="confirm-password" class="modal__label">Подтвердите пароль</label>
                     <div class="modal__input-wrapper">
@@ -86,29 +75,16 @@ onMounted(() => {
                         </span>
                     </div>
                 </div>
-                <div class="modal__footer">
-                    <div class="modal__footer-row">
-                        <p class="modal__signup">
-                            Уже есть аккаунт?
-                            <a href="#" class="modal__signup-link" @click.prevent="$emit('open-login')">
-                                Войдите
-                            </a>
-                        </p>
-                        <button type="submit" class="modal__button">Зарегистрироваться</button>
-                    </div>
-                    <div class="modal__footer-row">
-                        <div v-if="errorList.length" class="modal__errors">
-                            <ul>
-                                <li v-for="(error, index) in errorList" :key="index">{{ error }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <BottomField action="Зарегистрироваться" :errorList="errorList">
+                    Уже есть аккаунт?
+                    <a href="#" class="modal__signup-link" @click.prevent="$emit('open-login')">
+                        Войдите
+                    </a>
+                </BottomField>
             </form>
         </template>
     </ModalWrapper>
 </template>
 
-<style scoped>
-@import url('@/assets/css/register-modal.css');
-</style>
+<style scoped src="@/assets/css/register-modal.css"></style>
+<style scoped src="@/assets/css/base-field.css"></style>

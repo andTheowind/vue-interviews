@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted } from 'vue';
 import {
   notes,
   createNoteModal,
@@ -8,10 +8,9 @@ import {
   handleDeleteNote,
   loadNotes,
 } from '@/composable/api'
-import HeaderLayout from '@/components/header/HeaderLayout.vue'
-import CreateNoteModal from '@/components/modals/CreateNoteModal.vue'
+import HeaderLayout from '@/components/header/HeaderLayout.vue';
+import CreateNoteModal from '@/components/modals/CreateNoteModal.vue';
 
-// выполняется при монтировании компонента
 onMounted(() => {
   loadNotes()
 })
@@ -38,13 +37,11 @@ onMounted(() => {
         </li>
       </ul>
     </section>
-    <button class="floating__button" @click="openCreateNoteModal">
-      <img src="@/assets/img/plus-icon.svg" class="floating__button-icon" alt="Изображение" />
-    </button>
+    <a class="floating__button" @click="openCreateNoteModal">
+      <img src="@/assets/img/plus-icon.svg" class="floating__button-icon" alt="Добавить заметку" />
+    </a>
     <CreateNoteModal ref="createNoteModal" @create-note="handleCreateNote" />
   </div>
 </template>
 
-<style scoped>
-@import url('@/assets/css/note-page.css');
-</style>
+<style scoped src="@/assets/css/note-page.css"></style>

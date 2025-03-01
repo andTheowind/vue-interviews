@@ -60,24 +60,14 @@ onMounted(() => {
     <form @submit.prevent="submitNote" class="modal__form">
       <div class="modal__form-group">
         <label for="noteTitle" class="modal__label">Заголовок</label>
-        <input 
-          id="noteTitle" 
-          type="text" 
-          v-model="noteTitle" 
-          @input="updateTitleLength"
-          placeholder="Введите название" 
-          required class="modal__input"
-        />
+        <input id="noteTitle" type="text" v-model="noteTitle" @input="updateTitleLength" placeholder="Введите название"
+          required class="modal__input" />
         <div class="modal__counter">{{ titleLength }}/100</div>
       </div>
       <div class="modal__form-group">
         <label for="noteContent" class="modal__label">Текст заметки</label>
-        <textarea 
-          id="noteContent" 
-          v-model="noteContent" 
-          @input="updateContentLength"
-          placeholder="Введите текст заметки"
-          class="modal__textarea" required></textarea>
+        <textarea id="noteContent" v-model="noteContent" @input="updateContentLength"
+          placeholder="Введите текст заметки" class="modal__textarea" required></textarea>
         <div class="modal__counter">{{ contentLength }}/1000</div>
       </div>
       <div v-if="errorList.length" class="modal__errors">
@@ -90,6 +80,4 @@ onMounted(() => {
   </ModalWrapper>
 </template>
 
-<style scoped>
-@import url('@/assets/css/create-note-modal.css');
-</style>
+<style scoped src="@/assets/css/create-note-modal.css"></style>

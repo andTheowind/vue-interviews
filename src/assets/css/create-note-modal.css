@@ -3,20 +3,24 @@
     margin-bottom: 25px;
     font-weight: bold;
 }
+
 .modal__form {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
+
 .modal__form-group .modal__label {
     display: block;
     margin-left: 24px;
     margin-bottom: 8px;
     font-size: 18px;
     font-weight: 400;
-    color: #9DA5AF; 
+    color: #9DA5AF;
 }
-.modal__input, .modal__textarea {
+
+.modal__input,
+.modal__textarea {
     padding: 14px 14px 14px 28px;
     border-radius: 28px;
     border: none;
@@ -26,10 +30,12 @@
     font-family: "Montserrat", serif;
     width: 100%;
 }
+
 .modal__textarea {
     resize: vertical;
     min-height: 120px;
 }
+
 .modal__button {
     align-self: flex-end;
     display: inline-block;
@@ -48,6 +54,7 @@
     transition: background-color 0.35s;
     text-align: center;
 }
+
 .modal__button:hover {
     background: #8fbf33;
 }
@@ -60,9 +67,10 @@
     color: #9DA5AF;
 }
 
-input ~ .modal__counter {
+input~.modal__counter {
     margin-top: 12px;
 }
+
 .modal__errors {
     align-self: flex-start;
 }
@@ -77,7 +85,7 @@ input ~ .modal__counter {
 }
 
 .modal__errors ul li {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 @media (min-width: 1200px) {

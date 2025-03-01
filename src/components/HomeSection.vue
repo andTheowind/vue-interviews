@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
@@ -16,6 +15,4 @@
     </section>
 </template>
 
-<style scoped>
-@import url('@/assets/css/home-section.css');
-</style>
+<style scoped src="@/assets/css/home-section.css"></style>

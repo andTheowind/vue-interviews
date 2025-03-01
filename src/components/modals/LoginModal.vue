@@ -4,6 +4,8 @@ import { useRouter } from 'vue-router';
 import Cookies from 'js-cookie';
 import { BACKEND_URL } from '@/assets/utils/constants/environments';
 import ModalWrapper from './ModalWrapper.vue';
+import BaseField from './fields/BaseField.vue';
+import BottomField from './fields/BottomField.vue';
 
 // роутер для навигации
 const router = useRouter();
@@ -12,7 +14,6 @@ const router = useRouter();
 const isOpen = ref(false);
 const email = ref('');
 const password = ref('');
-const showPassword = ref(false);
 const loginSuccess = ref('');
 const errorList = ref<string[]>([]);
 
@@ -63,44 +64,18 @@ onMounted(() => {
         <template v-else>
             <h2 class="modal__title">Вход в ваш аккаунт</h2>
             <form @submit.prevent="submitLogin" class="modal__form">
-                <div class="modal__form-group">
-                    <label for="email" class="modal__label">Email</label>
-                    <input id="email" type="email" v-model="email" class="modal__input" placeholder="Введите Email"
-                        required />
-                </div>
-                <div class="modal__form-group">
-                    <label for="password" class="modal__label">Пароль</label>
-                    <div class="modal__input-wrapper">
-                        <input id="password" :type="showPassword ? 'text' : 'password'" v-model="password"
-                            class="modal__input" placeholder="Введите пароль" required />
-                        <span @click="showPassword = !showPassword" class="modal__button-visibillity">
-                            <img src="@/assets/img/visibillity-icon.svg" alt="">
-                        </span>
-                    </div>
-                </div>
-                <div class="modal__footer">
-                    <div class="modal__footer-row">
-                        <p class="modal__signup">
-                            У вас нет аккаунта?
-                            <a href="#" class="modal__signup-link" @click.prevent="$emit('open-register')">
-                                Зарегистрируйтесь
-                            </a>
-                        </p>
-                        <button type="submit" class="modal__button">Войти</button>
-                    </div>
-                    <div class="modal__footer-row">
-                        <div v-if="errorList.length" class="modal__errors">
-                            <ul>
-                                <li v-for="(error, index) in errorList" :key="index">{{ error }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <BaseField label="Email" name="Email" type="email" v-model:modelValue="email"
+                    placeholder="Введите Email" required />
+                <BaseField label="Пароль" name="password" type="password" v-model:modelValue="password" required />
+                <BottomField action="Войти" :errorList="errorList">
+                    У вас нет аккаунта?
+                    <a href="#" class="modal__signup-link" @click.prevent="$emit('open-register')">
+                        Зарегистрируйтесь
+                    </a>
+                </BottomField>
             </form>
         </template>
     </ModalWrapper>
 </template>
 
-<style scoped>
-@import url('@/assets/css/login-modal.css');
-</style>
+<style scoped src="@/assets/css/login-modal.css"></style>

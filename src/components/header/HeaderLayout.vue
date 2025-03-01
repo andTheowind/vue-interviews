@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import Cookies from 'js-cookie'; 
-
+import Cookies from 'js-cookie';
 import LoginModal from '@/components/modals/LoginModal.vue';
 import RegisterModal from '@/components/modals/RegisterModal.vue';
 
 const loginModalActions = ref<{ open?: () => void; close?: () => void }>({});
 const registerModalActions = ref<{ open?: () => void; close?: () => void }>({});
 
-const userData = ref<{ id: number; email: string } | null>(null); 
+const userData = ref<{ id: number; email: string } | null>(null);
 const backendUrl = "https://dist.nd.ru";
 
 const handleLoginSetActions = (actions: { open?: () => void; close?: () => void }) => {
@@ -30,25 +29,25 @@ const openLoginModal = () => {
 };
 
 onMounted(async () => {
-  const token = Cookies.get('accessToken');
-  if (token) {
-    try {
-      const response = await fetch(`${backendUrl}/api/auth`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+    const token = Cookies.get('accessToken');
+    if (token) {
+        try {
+            const response = await fetch(`${backendUrl}/api/auth`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (response.ok) {
+                userData.value = await response.json();
+            } else {
+                console.error('Failed to load user data');
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error);
         }
-      });
-      if (response.ok) {
-        userData.value = await response.json();
-      } else {
-        console.error('Failed to load user data');
-      }
-    } catch (error) {
-      console.error('Error fetching user data:', error);
     }
-  }
 });
 
 const isVisible = ref(false);
@@ -77,7 +76,7 @@ const logout = () => {
                         </span>
                         <a href="/logout" class="header__button-profile" @click.prevent="isVisible = !isVisible">
                             <img src="@/assets/img/user-icon.svg" class="header__user-icon" alt="">
-                            <div class="header__lougout-wrapper"  v-if="isVisible"> 
+                            <div class="header__lougout-wrapper" v-if="isVisible">
                                 <a href="/logout" class="header__lougout" @click="logout">Выход</a>
                             </div>
                         </a>
@@ -92,10 +91,8 @@ const logout = () => {
             </div>
         </div>
     </header>
-    <LoginModal @set-actions="handleLoginSetActions" @open-register="openRegisterModal"/>
-    <RegisterModal @set-actions="handleRegisterSetActions" @open-login="openLoginModal"/>
+    <LoginModal @set-actions="handleLoginSetActions" @open-register="openRegisterModal" />
+    <RegisterModal @set-actions="handleRegisterSetActions" @open-login="openLoginModal" />
 </template>
 
-<style scoped>
-@import url('@/assets/css/header.css');
-</style>
+<style scoped src="@/assets/css/header.css"></style>
