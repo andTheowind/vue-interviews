@@ -55,6 +55,7 @@ onMounted(async () => {
 });
 
 const onLogout = () => {
+    Cookies.remove('accessToken');
     userData.value = null;
     logout()
 }
