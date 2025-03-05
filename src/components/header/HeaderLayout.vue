@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import Cookies from 'js-cookie';
+import { logout } from '@/services/logout';
 import HeaderLogo from '@/components/header/components/HeaderLogo.vue';
 import HeaderLogin from '@/components/header/components/HeaderLogin.vue';
 import HeaderLogout from '@/components/header/components/HeaderLogout.vue';
 import LoginModal from '@/components/modals/LoginModal.vue';
 import RegisterModal from '@/components/modals/RegisterModal.vue';
+import { BACKEND_URL } from '@/assets/utils/constants/environments';
 
 const loginModalActions = ref<{ open?: () => void; close?: () => void }>({});
 const registerModalActions = ref<{ open?: () => void; close?: () => void }>({});
 
 const userData = ref<{ id: number; email: string } | null>(null);
-const backendUrl = "https://dist.nd.ru";
 
 const handleLoginSetActions = (actions: { open?: () => void; close?: () => void }) => {
     loginModalActions.value = actions;
@@ -35,7 +36,7 @@ onMounted(async () => {
     const token = Cookies.get('accessToken');
     if (token) {
         try {
-            const response = await fetch(`${backendUrl}/api/auth`, {
+            const response = await fetch(`${BACKEND_URL}/api/auth`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,14 +54,10 @@ onMounted(async () => {
     }
 });
 
-const isVisible = ref(false);
-
-const logout = () => {
-    Cookies.remove('accessToken');
+const onLogout = () => {
     userData.value = null;
-    isVisible.value = false;
-    window.location.href = '/';
-};
+    logout()
+}
 </script>
 
 <template>
@@ -73,7 +70,7 @@ const logout = () => {
                         <span class="header__user-name">
                             {{ userData.email }}
                         </span>
-                        <HeaderLogout @logout="logout" />
+                        <HeaderLogout @logout="onLogout" />
                     </div>
                 </template>
                 <template v-else>

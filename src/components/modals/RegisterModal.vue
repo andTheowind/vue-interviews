@@ -5,7 +5,6 @@ import ModalWrapper from './ModalWrapper.vue';
 import BaseField from './fields/BaseField.vue';
 import BottomField from './fields/BottomField.vue';
 
-// состояние модального окна
 const isOpen = ref(false);
 const email = ref('');
 const password = ref('');

@@ -9,14 +9,15 @@ interface Note {
 }
 
 // URL бэкенда
-const backendUrl = 'https://dist.nd.ru';
+const backendUrl = import.meta.env.VITE_APP_BACKEND_URL;
+
 // массив заметок
 export const notes = ref<Note[]>([]);
 
 // функция для загрузки заметок
 export const loadNotes = async () => {
   const token = Cookies.get('accessToken');
-  if (!token) return; // если токен отсутствует, выходим
+  if (!token) return;
 
   try {
     const response = await fetch(`${backendUrl}/api/notes`, {
@@ -36,13 +37,46 @@ export const loadNotes = async () => {
   }
 };
 
-// ссылка на модальное окно создания заметки
 export const createNoteModal = ref<InstanceType<typeof CreateNoteModal> | null>(null);
 
-// функция для открытия модального окна создания заметки
+// открытие модального окна создания заметки
 export const openCreateNoteModal = () => {
   if (createNoteModal.value) {
     createNoteModal.value.openModal();
+  }
+};
+
+export const submitNote = async (
+  errorList: string[], 
+  noteTitle: string, 
+  noteContent: string, 
+  closeModal: () => void, 
+  emit: (event: 'close' | 'create-note' |'set-actions', note: { title: string, content: string, id: number }) => void) => {
+  errorList.length = 0;
+  const token = Cookies.get('accessToken');
+  if (!token) {
+    errorList.push("Отсутствует токен аутентификации");
+    return;
+  }
+
+  const response = await fetch(`${backendUrl}/api/notes`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ title: noteTitle, content: noteContent })
+  });
+
+  if (response.ok) {
+    const newNote = await response.json();
+    emit('create-note', newNote);
+    noteTitle = '';
+    noteContent = '';
+    closeModal();
+  } else {
+    const data = await response.json();
+    errorList = Array.isArray(data.message) ? data.message : [data.message];
   }
 };
 
@@ -55,7 +89,6 @@ export const handleCreateNote = (note: { title: string; content: string; id: num
 export const handleDeleteNote = async (noteId: number) => {
   const token = Cookies.get('accessToken');
 
-  // если токен отсутствует, выходим
   if (!token) return;
 
   try {

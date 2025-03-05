@@ -2,10 +2,10 @@
 import { ref, onMounted, defineEmits } from 'vue';
 import { useRouter } from 'vue-router';
 import Cookies from 'js-cookie';
-import { BACKEND_URL } from '@/assets/utils/constants/environments';
 import ModalWrapper from './ModalWrapper.vue';
 import BaseField from './fields/BaseField.vue';
 import BottomField from './fields/BottomField.vue';
+import { BACKEND_URL } from '@/assets/utils/constants/environments';
 
 // роутер для навигации
 const router = useRouter();
