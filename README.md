@@ -1,38 +1,49 @@
 # VueInterviews
 
-This template should help get you started developing with Vue 3 in Vite.
+Это приложение для заметок, разработанное с использованием Vue.js (v3) и TypeScript. Оно предназначено для демонстрации навыков фронтенд-разработки и соответствует требованиям тестового задания на позицию фронтенд-разработчика.
 
-## Recommended IDE Setup
+# Описание проекта
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Приложение позволяет пользователям:
 
-## Type Support for `.vue` Imports in TS
+Регистрация и авторизация.
+Просмотр списка заметок текущего пользователя.
+Создание новой заметки.
+Удаление заметки.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+Важно: Приложение реализовано без использования UI библиотек (например, Vuetify или ElementUI) и jQuery.
 
-## Customize configuration
+## Рекомендованная настройка IDE
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Для разработки рекомендуется использовать VSCode с установленным расширением Volar (не забудьте отключить Vetur).
 
-## Project Setup
+## Настройка проекта
+
+Для установки выполните:
 
 ```sh
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+### Запуск проекта
+
+Для запуска приложения в режиме разработки используйте:
 
 ```sh
 pnpm dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Проверка типов, компиляция и минификация для продакшена
+
+Для сборки приложения в продакшен выполните:
 
 ```sh
 pnpm build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Линтинг с помощью ESLint
+
+Для проверки кода на соответствие стандартам используйте:
 
 ```sh
 pnpm lint

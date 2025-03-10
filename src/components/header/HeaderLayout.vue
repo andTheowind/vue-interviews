@@ -46,10 +46,10 @@ onMounted(async () => {
             if (response.ok) {
                 userData.value = await response.json();
             } else {
-                console.error('Failed to load user data');
+                console.error('Не удалось загрузить данные пользователя');
             }
         } catch (error) {
-            console.error('Error fetching user data:', error);
+            console.error('Ошибка при получении данных пользователя: ', error);
         }
     }
 });
