@@ -23,7 +23,7 @@ export const loadNotes = async () => {
     const response = await fetch(`${backendUrl}/api/notes`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
       },
     });
     if (response.ok) {
@@ -65,7 +65,10 @@ export const submitNote = async (
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     },
-    body: JSON.stringify({ title: noteTitle, content: noteContent })
+    body: JSON.stringify({ 
+      title: noteTitle, 
+      content: noteContent 
+    })
   });
 
   if (response.ok) {
@@ -88,14 +91,13 @@ export const handleCreateNote = (note: { title: string; content: string; id: num
 // обработчик удаления заметки
 export const handleDeleteNote = async (noteId: number) => {
   const token = Cookies.get('accessToken');
-
   if (!token) return;
 
   try {
     const response = await fetch(`${backendUrl}/api/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
     });
@@ -107,5 +109,40 @@ export const handleDeleteNote = async (noteId: number) => {
     }
   } catch (error) {
     console.error('Ошибка при удалении заметки:', error);
+  }
+};
+
+
+export const submitRegister = async (
+  errorList: string[],
+  email: string,
+  password: string,
+  confirmPassword: string,
+  registerSuccess: { value: string },
+  closeModal: () => void
+) => {
+  errorList.length = 0;
+  registerSuccess.value = '';
+
+  try {
+    const response = await fetch(`${backendUrl}/api/reg`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        confirm_password: confirmPassword 
+      })
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      errorList.push(...(Array.isArray(data.message) ? data.message : [data.message]));
+    } else {
+      registerSuccess.value = "Регистрация прошла успешно!";
+      closeModal();
+    }
+  } catch (error) {
+    console.error('Ошибка запроса:', error);
   }
 };

@@ -50,6 +50,7 @@
 .note {
     display: flex;
     flex-direction: column;
+    width: 100%;
     background-color: #b1c909;
     border-top-left-radius: 12px;
     outline: none;

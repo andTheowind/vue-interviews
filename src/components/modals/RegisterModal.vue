@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, defineEmits } from 'vue';
-import { BACKEND_URL } from '@/assets/utils/constants/environments';
+import { submitRegister } from '@/composable/api';
 import ModalWrapper from './ModalWrapper.vue';
 import BaseField from './fields/BaseField.vue';
 import BottomField from './fields/BottomField.vue';
@@ -15,35 +15,9 @@ const errorList = ref<string[]>([]);
 
 const emit = defineEmits(['set-actions', 'open-login']);
 
-// функции открытия/закрытия модального окна
+// для открытия/закрытия модального окна
 const openModal = () => { isOpen.value = true; };
 const closeModal = () => { isOpen.value = false; };
-
-// функция для отправки формы регистрации
-const submitRegister = async () => {
-    errorList.value = [];
-    registerSuccess.value = '';
-    try {
-        const response = await fetch(`${BACKEND_URL}/api/reg`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                email: email.value,
-                password: password.value,
-                confirm_password: confirmPassword.value
-            })
-        });
-
-        if (!response.ok) {
-            const data = await response.json();
-            errorList.value = Array.isArray(data.message) ? data.message : [data.message];
-        } else {
-            registerSuccess.value = "Регистрация прошла успешно!";
-        }
-    } catch (error) {
-        console.error('Ошибка запроса:', error);
-    }
-};
 
 onMounted(() => {
     emit('set-actions', { open: openModal, close: closeModal });
@@ -60,7 +34,9 @@ onMounted(() => {
         </template>
         <template v-else>
             <h2 class="modal__title">Регистрация</h2>
-            <form @submit.prevent="submitRegister" class="modal__form">
+            <form
+                @submit.prevent="() => submitRegister(errorList, email, password, confirmPassword, { value: registerSuccess }, closeModal)"
+                class="modal__form">
                 <BaseField label="Email" name="email" type="email" v-model:modelValue="email"
                     placeholder="Введите email" required />
                 <BaseField label="Пароль" name="password" type="password" v-model:modelValue="password" required />
