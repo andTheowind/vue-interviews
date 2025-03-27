@@ -37,8 +37,7 @@ onMounted(() => {
             <form
                 @submit.prevent="() => submitRegister(errorList, email, password, confirmPassword, { value: registerSuccess }, closeModal)"
                 class="modal__form">
-                <BaseField label="Email" name="email" type="email" v-model:modelValue="email"
-                    placeholder="Введите email" required />
+                <BaseField label="Email" name="email" type="email" v-model:modelValue="email" placeholder="Введите email" required />
                 <BaseField label="Пароль" name="password" type="password" v-model:modelValue="password" required />
                 <div class="modal__form-group">
                     <label for="confirm-password" class="modal__label">Подтвердите пароль</label>

@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { ref, onMounted, defineEmits } from 'vue';
 import { useRouter } from 'vue-router';
-import Cookies from 'js-cookie';
+import { submitLogin } from '@/composable/api';
 import ModalWrapper from './ModalWrapper.vue';
 import BaseField from './fields/BaseField.vue';
 import BottomField from './fields/BottomField.vue';
-import { BACKEND_URL } from '@/assets/utils/constants/environments';
 
 // роутер для навигации
 const router = useRouter();
 
 // состояние модального окна
 const isOpen = ref(false);
+
 const email = ref('');
 const password = ref('');
 const loginSuccess = ref('');
@@ -24,28 +24,8 @@ const openModal = () => { isOpen.value = true; };
 const closeModal = () => { isOpen.value = false; };
 
 // функция для отправки формы входа
-const submitLogin = async () => {
-    errorList.value = [];
-    loginSuccess.value = '';
-    try {
-        const response = await fetch(`${BACKEND_URL}/api/auth`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email.value, password: password.value })
-        });
-
-        if (!response.ok) {
-            const data = await response.json();
-            errorList.value = Array.isArray(data.message) ? data.message : [data.message];
-        } else {
-            const data = await response.json();
-            Cookies.set('accessToken', data.accessToken, { path: '/' });
-            loginSuccess.value = "Вы успешно вошли в систему";
-            router.push('/notes');
-        }
-    } catch (error) {
-        console.error('Ошибка запроса:', error);
-    }
+const handleSubmitLogin = async () => {
+    await submitLogin(errorList.value, email.value, password.value, loginSuccess, router);
 };
 
 onMounted(() => {
@@ -63,7 +43,7 @@ onMounted(() => {
         </template>
         <template v-else>
             <h2 class="modal__title">Вход в ваш аккаунт</h2>
-            <form @submit.prevent="submitLogin" class="modal__form">
+            <form @submit.prevent="handleSubmitLogin" class="modal__form">
                 <BaseField label="Email" name="Email" type="email" v-model:modelValue="email"
                     placeholder="Введите Email" required />
                 <BaseField label="Пароль" name="password" type="password" v-model:modelValue="password" required />
