@@ -20,3 +20,11 @@
     margin-right: 12px;
     color: #fff;
 }
+
+@media (max-width: 480px) {
+
+    .header__user-name {
+        display: none;
+    }
+
+}

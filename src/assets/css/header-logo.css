@@ -11,3 +11,9 @@
     height: auto;
     margin-right: 8px;
 }
+
+@media (max-width: 480px) {
+    .header__logo {
+        max-width: 190px;
+    }
+}
