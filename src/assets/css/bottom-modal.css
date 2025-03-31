@@ -13,6 +13,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 10px;
     width: 100%;
 }
@@ -42,6 +43,22 @@
 
 .modal__button:hover {
     background: #91b831;
+}
+
+@media (max-width: 480px) {
+
+    .modal__footer {
+        padding-top: 10px;
+    }
+
+    .modal__signup,
+    .modal__button {
+        width: 100%;
+    }
+
+    .modal__button {
+        max-width: 100%;
+    }
 }
 
 @media (min-width: 768px) {

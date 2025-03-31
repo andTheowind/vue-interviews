@@ -49,6 +49,12 @@
     background: #91b831;
 }
 
+@media (max-width: 480px) {
+    .modal__content {
+        padding: 40px 24px;
+    }
+}
+
 @media (min-width: 1440px) {
     .modal__content {
         max-width: 780px;

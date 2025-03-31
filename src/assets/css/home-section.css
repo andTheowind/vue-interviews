@@ -48,11 +48,11 @@
     }
 
     .home__title {
-        font-size: 36px;
+        font-size: 76px;
     }
 
     .home__description {
-        font-size: 16px;
+        font-size: 32px;
     }
 
     .home__image-wrapper {
@@ -70,11 +70,13 @@
     }
 
     .home__title {
-        font-size: 28px;
+        font-size: 56px;
+        margin-bottom: 20px;
     }
 
     .home__description {
-        font-size: 14px;
+        font-size: 22px;
+        line-height: 34px;
     }
 
     .home__image-wrapper {

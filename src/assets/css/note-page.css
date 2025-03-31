@@ -132,3 +132,19 @@
     font-size: 19px;
     padding-left: 4px;
 }
+
+@media (max-width: 768px) {
+    .notes__item {
+        width: calc(50% - 28px);
+    }
+}
+
+@media (max-width: 480px) {
+    .notes {
+        padding: 10px 10px;
+    }
+
+    .notes__item {
+        width: calc(100% - 20px);
+    }
+}
