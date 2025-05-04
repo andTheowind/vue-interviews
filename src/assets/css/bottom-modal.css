@@ -51,6 +51,20 @@
         padding-top: 10px;
     }
 
+    .modal__footer-row {
+        flex-wrap: wrap-reverse;
+    }
+
+    .modal__signup {
+        margin-top: 6px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .modal__signup {
+        font-size: 13px;
+    }
+
     .modal__signup,
     .modal__button {
         width: 100%;
@@ -59,6 +73,14 @@
     .modal__button {
         max-width: 100%;
     }
+}
+
+@media (max-width: 360px) {
+
+    .modal__signup {
+        font-size: 11px;
+    }
+
 }
 
 @media (min-width: 768px) {

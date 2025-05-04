@@ -43,6 +43,11 @@
         text-align: center;
     }
 
+    .home__description {
+        text-align: center;
+        margin-inline: auto;
+    }
+
     .home__content-wrapper {
         max-width: 96%;
     }

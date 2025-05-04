@@ -55,6 +55,12 @@
     }
 }
 
+@media (max-width: 360px) {
+    .modal__content {
+        padding: 30px 20px;
+    }
+}
+
 @media (min-width: 1440px) {
     .modal__content {
         max-width: 780px;
